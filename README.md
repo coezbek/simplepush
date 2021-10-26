@@ -46,26 +46,26 @@ The following is a sample of the query as it is produced:
 
 ```json
 {
-  "args": {}, 
-  "data": "", 
-  "files": {}, 
+  "args": {},
+  "data": "",
+  "files": {},
   "form": {
-    "encrypted": "true", 
-    "iv": "CEEFFBE72CC70DF45480DDAC775743B6", 
-    "key": "<the key, the key>", 
+    "encrypted": "true",
+    "iv": "CEEFFBE72CC70DF45480DDAC775743B6",
+    "key": "<the key, the key>",
     "msg": "szR70wqD9g8T2nX0FRZwoQ=="
-  }, 
+  },
   "headers": {
-    "Accept": "*/*", 
-    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3", 
-    "Content-Length": "94", 
-    "Content-Type": "application/x-www-form-urlencoded", 
-    "Host": "httpbin.org", 
-    "User-Agent": "Ruby", 
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Content-Length": "94",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "httpbin.org",
+    "User-Agent": "Ruby",
     "X-Amzn-Trace-Id": "Root=1-617714e4-08fc2a3f349df4203121ce0e"
-  }, 
-  "json": null, 
-  "origin": "91.32.103.70", 
+  },
+  "json": null,
+  "origin": "91.32.103.70",
   "url": "https://httpbin.org/post"
 }
 ```
