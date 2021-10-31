@@ -1,6 +1,6 @@
 # Simplepush Gem for Ruby
 
-This is a simple httparty wrapper for [SimplePush.io](SimplePush.io).
+This is a simple httparty wrapper for [SimplePush.io](https://SimplePush.io).
 
 ## Installation
 
