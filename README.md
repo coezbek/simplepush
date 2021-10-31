@@ -49,9 +49,11 @@ require 'async' # gem 'async'
 
 s = Simplepush.new('<your key>')
 
-100.times do |i|
-  Async do
-    s.send("Title", i.to_s) # Unenrypted
+Sync do
+  100.times do |i|
+    Async do
+      s.send("Title", i.to_s) # Unenrypted
+    end
   end
 end
 ```
@@ -90,7 +92,8 @@ The following is a sample of the query as it is produced:
 
  - [x] Encrypted Messages
  - [x] Processing responses
- - [ ] Async calls
+ - [x] Async calls
+ - [ ] Example how to integrate into rails to notify of failures
 
 ## Changelog
 
