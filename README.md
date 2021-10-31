@@ -58,6 +58,43 @@ Sync do
 end
 ```
 
+## Usage in Rails
+
+To use in Rails, you need (should?) use a worker gem to avoid that notification calls are blocking your users.
+
+For instance using ActiveJob you could define:
+
+```ruby
+class SimplepushJob < ApplicationJob
+  queue_as :default
+
+  def perform(title, message, event=nil)
+
+    simplepush = Rails.cache.fetch("simplepush", expires_in: 1.hour) do
+      cred = Rails.application.credentials.simplepush
+      Simplepush.new(cred[:key], cred[:pass], cred[:salt])
+    end
+
+    simplepush.send(title, message, event)
+  end
+end
+```
+
+This takes credentials from Rails `credentials.yml.enc`, which you can edit using `rails credentials:edit`. Add the following:
+
+```yml
+simplepush:
+  key: <your key>
+  pass: <your password>
+  salt: <your salt>
+```
+
+In your code you can then dispatch messages to SimplePush using:
+
+```ruby
+SimplepushJob.perform_later("My app", "User #{current_user.email} perform admin action...")
+```
+
 ## Example of query
 
 The following is a sample of the query as it is produced:
@@ -93,7 +130,7 @@ The following is a sample of the query as it is produced:
  - [x] Encrypted Messages
  - [x] Processing responses
  - [x] Async calls
- - [ ] Example how to integrate into rails to notify of failures
+ - [x] Example how to integrate into rails to notify of failures
 
 ## Changelog
 
