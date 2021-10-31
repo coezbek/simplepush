@@ -34,10 +34,26 @@ require 'simplepush'
 # From example/example.rb
 require 'simplepush'
 
-Simplepush.send('<your key>', "Title", "Message") # Unenrypted
+Simplepush.new('<your key>').send("Title", "Message") # Unenrypted
 
-Simplepush.send('<your key>', "Title", "Message", "<pass>", "<salt>") # Enrypted
+Simplepush.new('<your key>', "<pass>", "<salt>").send("Title", "Message") # Enrypted
 
+```
+
+## Asynchronous send
+
+The following does not work... `#TODO`
+
+```ruby
+require 'async' # gem 'async'
+
+s = Simplepush.new('<your key>')
+
+100.times do |i|
+  Async do
+    s.send("Title", i.to_s) # Unenrypted
+  end
+end
 ```
 
 ## Example of query
@@ -78,7 +94,8 @@ The following is a sample of the query as it is produced:
 
 ## Changelog
 
- - 0.5.0 Initial Release
+ - 0.5.0 Initial Commits
+ - 0.6.0 Changing API to cache keys, better examples
 
 ## Contributing
 
