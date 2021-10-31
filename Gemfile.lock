@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simplepush (0.6.0)
+    simplepush (0.6.1)
       httparty
 
 GEM

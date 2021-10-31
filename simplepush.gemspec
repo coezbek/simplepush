@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["c.oezbek@gmail.com"]
 
   spec.summary       = "Ruby SimplePush.io API client (unofficial)"
-  spec.description   = "Httpary wrapper for SimplePush.io"
+  spec.description   = "Httparty wrapper for SimplePush.io"
   spec.homepage      = "https://github.com/coezbek/simplepush"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
 
