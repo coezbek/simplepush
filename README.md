@@ -1,6 +1,6 @@
 # Simplepush Gem for Ruby
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/simplepush`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a simple httparty wrapper for [SimplePush.io](SimplePush.io).
 
 ## Installation
 
