@@ -4,47 +4,25 @@ require_relative 'config.rb'
 config = load_config
 simplepush = Simplepush.new(config[:key])
 
-require 'async'
-require 'benchmark'
-require 'open-uri'
-require 'httparty'
+n = 10
+if 3 >= RUBY_VERSION.split(".").first.to_i
 
-n = 3
-Benchmark.bm(20) do |b|
-
-  b.report "Sequential" do
+  require 'async'
+  Sync do
     n.times do |i|
-      HTTParty.get("https://httpbin.org/delay/1.6")
+      Async do
+       simplepush.send("Asynchronous sending with Async", i.to_s)
+      end
     end
-  end
+  end # join here
 
-  b.report "Threads + HTTParty" do
-    threads = Array.new(n) { |i|
-      Thread.new {
-        HTTParty.get("https://httpbin.org/delay/1.6")
-      }
+else
+
+  threads = Array.new(n) { |i|
+    Thread.new {
+      simplepush.send("Asynchronous sending with Threads", i.to_s)
     }
-    threads.each(&:join)
-  end
-
-  b.report "Async + HTTParty" do
-    Async do |task|
-      n.times do |i|
-        task.async do
-          HTTParty.get("https://httpbin.org/delay/1.6")
-        end
-      end
-    end
-  end
-
-  b.report "Async + open-uri" do
-    Async do |task|
-      n.times do |i|
-        task.async do
-          URI.open("https://httpbin.org/delay/1.6")
-        end
-      end
-    end
-  end
+  }
+  threads.each(&:join)
 
 end
