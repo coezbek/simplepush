@@ -85,11 +85,11 @@ SimplepushJob.perform_later("My app", "User #{current_user.email} perform admin 
 
 Since 0.7.0, this Gem provides an integration with the [Exception Notification Gem](https://github.com/smartinez87/exception_notification). To enable this, add the following to your `environment.rb`:
 
-```
+```ruby
 # production.rb
-  config.middleware.use ExceptionNotification::Rack, simplepush: {
-    title_prefix: "[Crash in #{Rails.application.class.module_parent.name}] "
-  }
+config.middleware.use ExceptionNotification::Rack, simplepush: {
+  title_prefix: "[Crash in #{Rails.application.class.module_parent.name}] "
+}
 ```
 
 This depends on the credentials defined above. Exceptions which hit the production are then reported via Simplepush.
