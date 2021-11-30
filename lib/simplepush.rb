@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "simplepush/version"
+require_relative 'simplepush/version'
 require 'httparty'
+require_relative 'integrations/simplepush_notifier'
 
 class Simplepush
 
@@ -12,7 +13,7 @@ class Simplepush
   # base_uri 'https://httpbin.org'.freeze
   format :json
   default_timeout 5 # 5 seconds
-  # debug_output $stdout # Uncomment to get detailled httparty log output to stdout 
+  # debug_output $stdout # Uncomment to get detailled httparty log output to stdout
 
   # If password and salt are provided, then message and title will be encrypted.
   def initialize(key, password = nil, salt = '1789F0B8C4A051E5')

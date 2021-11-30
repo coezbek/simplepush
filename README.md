@@ -42,21 +42,7 @@ Simplepush.new('<your key>', "<pass>", "<salt>").send("Title", "Message") # Enry
 
 ## Asynchronous send
 
-The following does not work... `#TODO`
-
-```ruby
-require 'async' # gem 'async'
-
-s = Simplepush.new('<your key>')
-
-Sync do
-  100.times do |i|
-    Async do
-      s.send("Title", i.to_s) # Unenrypted
-    end
-  end
-end
-```
+See [example/async.rb](example/async.rb)
 
 ## Usage in Rails
 
@@ -94,6 +80,19 @@ In your code you can then dispatch messages to SimplePush using:
 ```ruby
 SimplepushJob.perform_later("My app", "User #{current_user.email} perform admin action...")
 ```
+
+## Usage with Encryption Notification Gem
+
+Since 0.7.0, this Gem provides an integration with the [Exception Notification Gem](https://github.com/smartinez87/exception_notification). To enable this, add the following to your `environment.rb`:
+
+```
+# production.rb
+  config.middleware.use ExceptionNotification::Rack, simplepush: {
+    title_prefix: "[Crash in #{Rails.application.class.module_parent.name}] "
+  }
+```
+
+This depends on the credentials defined above. Exceptions which hit the production are then reported via Simplepush.
 
 ## Example of query
 
@@ -136,6 +135,7 @@ The following is a sample of the query as it is produced:
 
  - 0.5.0 Initial Commits
  - 0.6.0 Changing API to cache keys, better examples
+ - 0.7.0 Added support for [Exception Notification Gem](https://github.com/smartinez87/exception_notification)
 
 ## Contributing
 
