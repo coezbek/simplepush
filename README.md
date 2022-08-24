@@ -136,6 +136,7 @@ The following is a sample of the query as it is produced:
  - 0.5.0 Initial Commits
  - 0.6.0 Changing API to cache keys, better examples
  - 0.7.0 Added support for [Exception Notification Gem](https://github.com/smartinez87/exception_notification)
+ - 0.7.1 Fixed incorrect content-type handling.
 
 ## Contributing
 
