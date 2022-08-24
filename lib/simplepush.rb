@@ -11,7 +11,10 @@ class Simplepush
   base_uri 'https://api.simplepush.io'.freeze
   # For testing:
   # base_uri 'https://httpbin.org'.freeze
-  format :json
+
+  # Don't override format use from Content-Type
+  # format :json
+
   default_timeout 5 # 5 seconds
   # debug_output $stdout # Uncomment to get detailled httparty log output to stdout
 
