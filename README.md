@@ -40,6 +40,8 @@ Simplepush.new('<your key>', "<pass>", "<salt>").send("Title", "Message") # Enry
 
 ```
 
+*Note:* The maximum amount of data which can be send using SimplePush is restricted. The usable payload is dependent on the target platform. It is save to consider 1024 bytes for title and message combined. If you send too much data then you will get a 406 ('Not Acceptable') response.
+
 ## Asynchronous send
 
 See [example/async.rb](example/async.rb)
