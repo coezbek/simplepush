@@ -63,7 +63,10 @@ class SimplepushJob < ApplicationJob
       Simplepush.new(cred[:key], cred[:pass], cred[:salt])
     end
 
-    simplepush.send(title, message, event)
+    response = simplepush.send(title, message, event)
+    if !response.success?
+      Rails.logger.error "SimplePush failed: " + response.inspect
+    end
   end
 end
 ```
