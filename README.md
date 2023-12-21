@@ -143,6 +143,7 @@ The following is a sample of the query as it is produced:
  - 0.7.0 Added support for [Exception Notification Gem](https://github.com/smartinez87/exception_notification)
  - 0.7.1 Fixed incorrect content-type handling.
  - 0.7.2 Bump dependencies because of vulnerability in httparty
+ - 0.7.3 Fix OpenSSL cipher needing key again under Ruby >= 3.0, bump dependencies
 
 ## Contributing
 

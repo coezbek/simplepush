@@ -55,6 +55,7 @@ class Simplepush
 
       if title
         cipher.encrypt # Restart cipher
+        cipher.key = @cipher_key
         payload[:title] = Base64.urlsafe_encode64(cipher.update(payload[:title]) + cipher.final)
       end
     end
