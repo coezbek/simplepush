@@ -32,6 +32,7 @@ module ExceptionNotifier
       MAX_TITLE_LENGTH = 120
       MAX_VALUE_LENGTH = 300
       MAX_BACKTRACE_SIZE = 3
+      MAX_TOTAL_SIZE_BYTES = 1024
 
       attr_reader :exception,
                   :options
@@ -71,7 +72,21 @@ module ExceptionNotifier
         text << formatted_request if request
         text << formatted_session if request
 
-        text.join("\n------------------\n")
+        text = text.join("\n------------------\n")
+
+        if text.bytesize >= MAX_TOTAL_SIZE_BYTES
+          # puts "Text is too long (#{text.bytesize} bytes >= MAX_TOTAL_SIZE), need to truncate"
+          
+          # if truncate bytes is available
+          if text.respond_to?(:truncate_bytes) && false            
+            text = text.truncate_bytes(MAX_TOTAL_SIZE_BYTES)
+          else
+            text = text[0...(MAX_TOTAL_SIZE_BYTES/2)]
+          end
+          # puts "Text after truncate is #{text.bytesize} bytes <= MAX_TOTAL_SIZE"
+        end
+
+        text
       end
 
       def formatted_key_value(key, value)

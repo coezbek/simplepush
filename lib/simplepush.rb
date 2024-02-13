@@ -30,6 +30,8 @@ class Simplepush
   #
   # This method is blocking.
   #
+  # Returns the response object from Httparty.
+  #
   def send(title, message, event = nil)
     raise "Key and message argument must be set" unless message
 
