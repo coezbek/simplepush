@@ -9,13 +9,21 @@ module ExceptionNotifier
 
     def initialize(options)
       cred = Rails.application.credentials.simplepush
+
+      if !cred
+        Rails.logger.error "Simplepush credentials not found. Please add simplepush credentials to your credentials file."
+        return
+      end
+
       @client = Simplepush.new(cred[:key], cred[:pass], cred[:salt])
       @default_options = options
     end
 
     def call(exception, options = {})
-      event = SimplepushExceptionEvent.new(exception, options.reverse_merge(default_options))
-      @client.send(event.formatted_title, event.formatted_body)
+      if !@client
+        event = SimplepushExceptionEvent.new(exception, options.reverse_merge(default_options))
+        @client.send(event.formatted_title, event.formatted_body)
+      end
     end
 
     #
