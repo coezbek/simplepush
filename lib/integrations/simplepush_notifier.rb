@@ -12,6 +12,7 @@ module ExceptionNotifier
 
       if !cred
         Rails.logger.error "Simplepush credentials not found. Please add simplepush credentials to your credentials file."
+        @client = nil
         return
       end
 
